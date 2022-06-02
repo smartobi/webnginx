@@ -1,0 +1,25 @@
+sudo: required
+services:
+  - docker
+
+before_install: 
+  - docker build -t futumans/docker-nginx -f Dockerfile.dev .
+
+script: 
+  - docker run -e CI=true futumans/docker-nginx  -- -- coverage
+
+language: minimal
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-nginx"
+  env: "Docker-nginx"
+  bucket_name: " "
+  bucket_path: "docker-nginx"
+
+on:
+  branch: main
+access_key_id: $AWS_ACCESS_KEY
+secret_access_key: "$AWS_SECRET_KEY"
+edge: true
