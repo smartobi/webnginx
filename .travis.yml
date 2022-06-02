@@ -6,7 +6,7 @@ before_install:
   - docker build -t futumans/docker-nginx -f Dockerfile.dev .
 
 script: 
-  - docker run -e CI=true futumans/docker-nginx  -- -- coverage
+  - docker run  futumans/docker-nginx  
 
 language: minimal
 
@@ -14,8 +14,8 @@ deploy:
   provider: elasticbeanstalk
   region: "us-east-1"
   app: "docker-nginx"
-  env: "Docker-nginx"
-  bucket_name: " "
+  env: "Dockernginx-env"
+  bucket_name: "elasticbeanstalk-us-east-1:652213986584"
   bucket_path: "docker-nginx"
 
 on:
