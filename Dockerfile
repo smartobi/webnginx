@@ -7,7 +7,7 @@ WORKDIR /var/www/html/
 RUN unzip photogenic.zip
 RUN cp -rvf photogenic/* .
 RUN rm -rf photogenic photogenic.zip
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
-RUN service apache2 restart
+RUN echo "ServerName localhost" >> /etc/httpd/conf/httpd.conf
+RUN systemctl restart httpd
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 EXPOSE 80
