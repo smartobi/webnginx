@@ -8,6 +8,5 @@ RUN unzip photogenic.zip
 RUN cp -rvf photogenic/* .
 RUN rm -rf photogenic photogenic.zip
 RUN echo "ServerName localhost" >> /etc/httpd/conf/httpd.conf
-RUN service httpd restart
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 EXPOSE 80
